@@ -7,12 +7,23 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to my mortgage calculator");
-        System.out.print("How much would you like to borrow?: ");
-        int principal = scanner.nextInt();
-        System.out.print("Annual Interest Rate (%): ");
-        double interestRate = scanner.nextDouble();
-        System.out.print("Period (Years): ");
-        int period = scanner.nextInt();
+        // must be between 1k and 1M
+        int principal = 0;
+        double interestRate = 0.0;
+        int period = 0;
+        do {
+            System.out.print("How much would you like to borrow? (between 1K and 1M): ");
+            principal = scanner.nextInt();
+        } while(principal < 1_000 || principal > 1_000_000 );
+//        must be between 1 and 30
+        do {
+            System.out.print("Annual Interest Rate (1% - 30%): ");
+            interestRate = scanner.nextDouble();
+        } while (interestRate < 1 || interestRate > 30);
+        do {
+            System.out.print("Period (5 to 30Years): ");
+            period = scanner.nextInt();
+        } while(period < 5 || period > 30);
         calculate(principal, interestRate, period);
 
     }
